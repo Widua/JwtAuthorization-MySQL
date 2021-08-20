@@ -56,6 +56,7 @@ public class UserManager {
         if (changePasswordModel.getNewPassword().equals(changePasswordModel.getRepeatedNewPassword())){
             UserModel user = repository.findById( username ).get() ;
             user.setPassword( encoder.encode( changePasswordModel.getNewPassword() ) );
+            repository.save(user) ;
             return "Password changed correctly!";
         } else {
             return "Passwords are not same!";
